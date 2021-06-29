@@ -30,8 +30,14 @@ jobs:
         steps:
             - name: Download build artifacts
               uses: actions/download-artifact@v2
-              with:
-                name: build-ubuntu-latest
+              id: download
+
+            - name: Create download dir
+              run: mkdir tarballs
+
+            - name: Collect all artifacts
+              run: find ${{steps.download.outputs.download-path}} -type f -exec mv {} tarballs \;
+
             - name: Display structure of downloaded files
               run: ls -R
 
