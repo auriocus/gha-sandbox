@@ -20,14 +20,14 @@ jobs:
             - name: checkout repo
               uses: actions/checkout@v2
             - name: Install git sdk
-              if:   ${{ matrix.os == 'windows-latest' }}
-              uses: git-for-windows/setup-git-for-windows-sdk
+              if: ${{ matrix.os == 'windows-latest' }}
+              uses: git-for-windows/setup-git-for-windows-sdk@v1
               with:
                 flavor: full
 
             - name: build application
               run: ./make.sh
-          
+
             - name: upload result
               uses: actions/upload-artifact@v2
               with:
