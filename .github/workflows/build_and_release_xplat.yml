@@ -42,4 +42,5 @@ jobs:
                   automatic_release_tag: "latest"
                   prerelease: true
                   title: "Development Build"
-                  files: *.tar.bz2
+                  files: |
+                    *.tar.bz2
