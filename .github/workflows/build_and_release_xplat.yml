@@ -9,13 +9,21 @@ on:
 jobs:
     build:
         runs-on: ${{ matrix.os }}
+        shell: bash
         strategy:
           matrix:
             os: [macos-latest, ubuntu-latest, windows-latest]
         steps:
             - name: checkout repo
               uses: actions/checkout@v2
+            - name: Install git sdk
+              if:   ${{ matrix.os == 'windows-latest' }}
+              uses: git-for-windows/setup-git-for-windows-sdk
+              with:
+                flavor: full
+
             - name: build application
+              shell: bash
               run: ./make.sh
           
             - name: upload result
