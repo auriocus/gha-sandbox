@@ -6,10 +6,13 @@ on:
  pull_request:
    branches: [ main ]
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
     build:
         runs-on: ${{ matrix.os }}
-        shell: bash
         strategy:
           matrix:
             os: [macos-latest, ubuntu-latest, windows-latest]
@@ -23,7 +26,6 @@ jobs:
                 flavor: full
 
             - name: build application
-              shell: bash
               run: ./make.sh
           
             - name: upload result
