@@ -33,7 +33,7 @@ jobs:
               with:
                 name: build-ubuntu-latest
             - name: Display structure of downloaded files
-                run: ls -R
+              run: ls -R
 
             - name: Release result
               uses: marvinpinto/action-automatic-releases@v1.2.1
