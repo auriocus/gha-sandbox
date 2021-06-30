@@ -46,10 +46,10 @@ jobs:
                 install: >-
                     base-devel
                     git
+                    swig
         #- run: git config --global core.autocrlf input
         #  shell: bash
             - uses: actions/checkout@v2
-            - run: git describe --dirty
             
             - name: build application
               run: ./make.sh
