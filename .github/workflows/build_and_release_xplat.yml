@@ -1,21 +1,21 @@
 name: build-and-release
 
 on:
- push:
-  branches: [ main ]
- pull_request:
-  branches: [ main ]
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
 
 defaults:
-  run:
-    shell: bash
+    run:
+        shell: bash
 
 jobs:
     build:
         runs-on: ${{ matrix.os }}
         strategy:
-          matrix:
-            os: [macos-latest, ubuntu-latest]
+            matrix:
+                os: [macos-latest, ubuntu-latest, windows-latest]
         steps:
             - name: checkout repo
               uses: actions/checkout@v2
@@ -33,33 +33,6 @@ jobs:
               with:
                 name: build-${{ matrix.os }}
                 path: dist/*.tar.bz2
-
-    build-windows:
-        runs-on: windows-latest
-        defaults:
-            run:
-                shell: msys2 {0}
-        steps:
-            - uses: msys2/setup-msys2@v2
-              with:
-                update: true
-                install: >-
-                    base-devel
-                    git
-                    swig
-        #- run: git config --global core.autocrlf input
-        #  shell: bash
-            - uses: actions/checkout@v2
-            
-            - name: build application
-              run: ./make.sh
-
-            - name: upload result
-              uses: actions/upload-artifact@v2
-              with:
-                name: build-msys
-                path: dist/*.tar.bz2
-    
 
     deploy:
         runs-on: ubuntu-latest
