@@ -27,8 +27,8 @@ jobs:
             - name: Install wget
               if: ${{ matrix.os == 'windows-latest' }}
               run: |
-                sudo pacman -Syu
-                sudo pacman install wget
+                pacman -Syu
+                pacman -S wget
 
             - name: build application
               run: ./make.sh
