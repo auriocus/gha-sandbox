@@ -7,7 +7,7 @@ echo "This is the make script which builds the tarball on $machine"
 mkdir -p build
 echo $machine > build/somefile
 
-for tool in "cmake --version" "gcc --version" "g++ --version" "swig -version" "wget --version" "curl --version";  do 
+for tool in "cmake --version" "gcc --version" "g++ --version" "swig -version" "wget --version" "curl --version" "clang --version";  do 
 	echo "======================================================="
 	echo "Checking for $tool"
 	$tool 
