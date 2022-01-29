@@ -23,11 +23,6 @@ jobs:
               uses: git-for-windows/setup-git-for-windows-sdk@v1
               with:
                 flavor: full
-            - name: Install wget
-              if: ${{ matrix.os == 'windows-latest' }}
-              run: |
-                pacman -Syu
-                pacman --noconfirm -S --needed wget
 
             - name: build application
               run: ./make.sh
